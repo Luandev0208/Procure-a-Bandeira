@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bcnjxwtnjm3jn"]
+
+[ext_resource type="Texture2D" uid="uid://b728ghlop7vx0" path="res://Assets/kenney_tiny-battle/Tilemap/tilemap_packed.png" id="1_8aeg0"]
+[ext_resource type="Script" uid="uid://dt6jaej17njs" path="res://Scripts/alvo.gd" id="1_mrwlm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrwlm"]
+atlas = ExtResource("1_8aeg0")
+region = Rect2(256, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7wlw"]
+atlas = ExtResource("1_8aeg0")
+region = Rect2(272, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q1ssg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrwlm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7wlw")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1ssg"]
+size = Vector2(14, 16)
+
+[node name="Alvo" type="Area2D" unique_id=1582570425]
+script = ExtResource("1_mrwlm")
+
+[node name="Animação" type="AnimatedSprite2D" parent="." unique_id=1234979699]
+sprite_frames = SubResource("SpriteFrames_q1ssg")
+autoplay = "default"
+frame_progress = 0.33579037
+
+[node name="Colisor" type="CollisionShape2D" parent="." unique_id=2103810758]
+shape = SubResource("RectangleShape2D_q1ssg")
+
+[node name="Label" type="Label" parent="." unique_id=1249052180]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Parabéns"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

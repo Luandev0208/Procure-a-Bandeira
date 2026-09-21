@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://b81ylfnlbibl8"]
+
+[ext_resource type="Script" uid="uid://b17xsdkhd6gob" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://b728ghlop7vx0" path="res://Assets/kenney_tiny-battle/Tilemap/tilemap_packed.png" id="1_v0iea"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(256, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(256, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(272, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f60y1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvnsp")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t5aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgqql")
+}],
+"loop": 1,
+"name": &"Walk",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
+size = Vector2(13, 14)
+
+[node name="Player" type="CharacterBody2D" unique_id=1870146744]
+script = ExtResource("1_cvnsp")
+
+[node name="Animação" type="AnimatedSprite2D" parent="." unique_id=410848966]
+sprite_frames = SubResource("SpriteFrames_f60y1")
+animation = &"Walk"
+autoplay = "Idle"
+frame_progress = 0.5794856
+
+[node name="Colisor" type="CollisionShape2D" parent="." unique_id=1690182272]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_fkybt")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1465186222]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 600
+limit_bottom = 300
+position_smoothing_enabled = true
