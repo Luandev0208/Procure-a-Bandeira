@@ -831,6 +831,9 @@ texture = ExtResource("1_wu4wd")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_rokwo")
 
+[sub_resource type="LabelSettings" id="LabelSettings_iy03s"]
+font_size = 12
+
 [node name="Fase01" type="Node2D" unique_id=1025891957]
 texture_filter = 1
 script = SubResource("GDScript_6b6tp")
@@ -871,6 +874,7 @@ offset_top = 27.0
 offset_right = 161.0
 offset_bottom = 50.0
 text = "Encontre a bandeira!"
+label_settings = SubResource("LabelSettings_iy03s")
 horizontal_alignment = 1
 vertical_alignment = 1
 
