@@ -4,6 +4,22 @@
 [ext_resource type="PackedScene" uid="uid://b81ylfnlbibl8" path="res://Scenes/player.tscn" id="2_h60hs"]
 [ext_resource type="PackedScene" uid="uid://bcnjxwtnjm3jn" path="res://Scenes/alvo.tscn" id="3_82dp6"]
 
+[sub_resource type="GDScript" id="GDScript_6b6tp"]
+script/source = "extends Node2D
+
+func _on_timer_tutorial_timeout() -> void:
+	$Tutorial.visible = false
+
+
+func _on_alvo_body_entered(body: Node2D) -> void:
+	if body.name == 'Player':
+		$Timer_Fase.start()
+		
+
+func _on_timer_fase_timeout() -> void:
+	get_tree().change_scene_to_file(\"res://Scenes/fase02.tscn\")
+"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h60hs"]
 texture = ExtResource("1_wu4wd")
 0:0/0 = 0
@@ -815,8 +831,9 @@ texture = ExtResource("1_wu4wd")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_rokwo")
 
-[node name="Fase1" type="Node2D" unique_id=1025891957]
+[node name="Fase01" type="Node2D" unique_id=1025891957]
 texture_filter = 1
+script = SubResource("GDScript_6b6tp")
 
 [node name="Mundo" type="Node2D" parent="." unique_id=1001700586]
 texture_filter = 1
@@ -843,16 +860,26 @@ tile_set = SubResource("TileSet_ay0fq")
 
 [node name="Player" parent="." unique_id=1870146744 instance=ExtResource("2_h60hs")]
 texture_filter = 1
+position = Vector2(13, 11)
 
 [node name="Alvo" parent="." unique_id=1582570425 instance=ExtResource("3_82dp6")]
 texture_filter = 1
 position = Vector2(392, 245)
 
 [node name="Tutorial" type="Label" parent="." unique_id=511573426]
-visible = false
 offset_top = 27.0
 offset_right = 161.0
 offset_bottom = 50.0
 text = "Encontre a bandeira!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Timer_Tutorial" type="Timer" parent="." unique_id=2014349196]
+wait_time = 2.0
+autostart = true
+
+[node name="Timer_Fase" type="Timer" parent="." unique_id=2139567335]
+
+[connection signal="body_entered" from="Alvo" to="." method="_on_alvo_body_entered"]
+[connection signal="timeout" from="Timer_Tutorial" to="." method="_on_timer_tutorial_timeout"]
+[connection signal="timeout" from="Timer_Fase" to="." method="_on_timer_fase_timeout"]

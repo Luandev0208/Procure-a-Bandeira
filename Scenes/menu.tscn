@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://dimc7lq3itj48"]
+
+[ext_resource type="Script" uid="uid://3gppgwfa3qkq" path="res://Scripts/menu.gd" id="1_1rerr"]
+
+[sub_resource type="GDScript" id="GDScript_1rerr"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Menu" type="Control" unique_id=1104669880]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1rerr")
+
+[node name="Panel" type="Panel" parent="." unique_id=384966250]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=748194392]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1934645583]
+layout_mode = 2
+text = "Fase 01"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=562336976]
+layout_mode = 2
+text = "Fase 02"
+script = SubResource("GDScript_1rerr")
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=553005124]
+layout_mode = 2
+text = "Sair"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
